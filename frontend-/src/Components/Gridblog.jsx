@@ -1,14 +1,5 @@
 import {
   Grid,
-  Image,
-  Stack,
-  Button,
-  Card,
-  Heading,
-  Text,
-  CardHeader,
-  CardBody,
-  CardFooter,
   GridItem,
 } from "@chakra-ui/react";
 

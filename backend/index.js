@@ -11,7 +11,7 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.json({ Message: "Welcome to Home Page" });
 });
-app.use(cors())
+app.use(cors());
 
 app.use("/user", userController);
 app.use(authentication);

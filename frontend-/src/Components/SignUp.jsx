@@ -14,9 +14,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import video1 from "../assets/video4.mp4";
 import { useState } from "react";
-import axios from "axios";
-import './SignUp.css'
-import Navbar from "./Navbar";
+
 
 
 const SignUp = () => {
@@ -43,7 +41,7 @@ const SignUp = () => {
       state.email.length != 0 &&
       state.password.length > 6
     ) {
-      fetch(`http://localhost:8000/user/signup`, {
+      fetch(`http://localhost:3002/user/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -55,7 +53,7 @@ const SignUp = () => {
         alert("SignUp Successfull...Redirecting to Login Page")
         navigate("/login");
 
-      })
+      }).catch(err=>console.log(err))
     }
     else {
       alert("All fields are compulsory");
