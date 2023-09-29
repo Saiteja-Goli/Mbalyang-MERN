@@ -24,7 +24,7 @@ const Login = () => {
   };
   const handelSubmit = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:3002/user/login`, {
+    fetch(`https://mbalyang-mern.vercel.app/user/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

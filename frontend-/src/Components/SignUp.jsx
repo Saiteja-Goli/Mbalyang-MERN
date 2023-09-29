@@ -41,7 +41,7 @@ const SignUp = () => {
       state.email.length != 0 &&
       state.password.length > 6
     ) {
-      fetch(`http://localhost:3002/user/signup`, {
+      fetch(`https://mbalyang-mern.vercel.app/user/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
