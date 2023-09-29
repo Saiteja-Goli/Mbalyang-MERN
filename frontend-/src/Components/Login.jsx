@@ -24,7 +24,7 @@ const Login = () => {
   };
   const handelSubmit = (e) => {
     e.preventDefault();
-    fetch(`https://mbalyang-mern.vercel.app/user/login`, {
+    fetch(`https://grumpy-jewelry-mite.cyclic.cloud/user/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -42,7 +42,7 @@ const Login = () => {
           alert("Please Enter Correct Credentials")
           return
         }
-      })
+      }).catch(err => console.log(err))
   }
   return (
     <div className="mainLogin">
@@ -65,7 +65,7 @@ const Login = () => {
           </FormControl>
           &nbsp;
           <FormControl isRequired>
-          <FormLabel>Password</FormLabel>
+            <FormLabel>Password</FormLabel>
             <InputGroup size="md">
               <Input
                 name="password"

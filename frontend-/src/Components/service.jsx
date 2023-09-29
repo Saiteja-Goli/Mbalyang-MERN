@@ -36,7 +36,7 @@ const Services = () => {
   // --------GET---------------------------------------------------------------------------------------------------------------------------
 
   const fetchData = async () => {
-    await fetch(`http://localhost:3002/hotel/`, {
+    await fetch(`https://grumpy-jewelry-mite.cyclic.cloud/hotel/`, {
       method: "GET",
       headers: {
         "Authorization": `Bearer ${token}`
@@ -100,7 +100,7 @@ const Services = () => {
       ...newHotelData
     };
 
-    fetch("http://localhost:3002/hotel/hotelpost", {
+    fetch("https://grumpy-jewelry-mite.cyclic.cloud/hotel/hotelpost", {
       method: "POST",
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -130,7 +130,7 @@ const Services = () => {
   // ----------DELETE-------------------------------------------------------------------------------------------------------------------------
   const handleDelete = (id) => {
     console.log(id)
-    fetch(`http://localhost:3002/hotel/delete/${id}`, {
+    fetch(`https://grumpy-jewelry-mite.cyclic.cloud/hotel/delete/${id}`, {
       method: "DELETE",
       headers: {
         'Authorization': `Bearer ${token}`,

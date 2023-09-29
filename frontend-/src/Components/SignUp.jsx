@@ -41,7 +41,7 @@ const SignUp = () => {
       state.email.length != 0 &&
       state.password.length > 6
     ) {
-      fetch(`https://mbalyang-mern.vercel.app/user/signup`, {
+      fetch(`https://grumpy-jewelry-mite.cyclic.cloud/user/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
