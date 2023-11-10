@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import video1 from "../assets/video4.mp4";
 import { useState } from "react";
 
-import "./Signup.css"
+// import "./Signup.css"
 
 const SignUp = () => {
   const [show, setShow] = React.useState(false);
@@ -62,11 +62,12 @@ const SignUp = () => {
 
   return (
 
-    <div className="mainLogin">
-      <div className="overlayLogin"></div>
-      <video className="videoLogin" src={video1} autoPlay muted loop />
-      <div className="containerLogin">
-        <form className="formLogin" onSubmit={handleSubmit}>
+    <div style={mainLogin}>
+      <div style={overlayLogin}></div>
+      <video style={videoLogin} className="videoLogin" src={video1} autoPlay muted loop />
+      <div style={containerLogin}
+        className="containerLogin">
+        <form style={formLogin} className="formLogin" onSubmit={handleSubmit}>
           <Heading as="h4" size="lg">
             Sign up
           </Heading>
@@ -134,7 +135,44 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+const mainLogin = {
+  width: "100%",
+  height: "100vh"
+}
+
+const overlayLogin = {
+  width: "100%",
+  height: "100%",
+  position: "absolute",
+  top: "0",
+  left: "0",
+  backgroundColor: "rgba(0, 0, 0, 0.2)",
+}
+
+const videoLogin = {
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover'
+}
+const formLogin = {
+  width: '35%',
+  margin: 'auto',
+  padding: '30px',
+  borderRadius: '15px',
+  backgroundColor: 'white',
+}
+
+const containerLogin = {
+  position: "absolute",
+  top: '0',
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  width: '100%',
+  height: '100%',
+}
+export default SignUp
 
 
 
