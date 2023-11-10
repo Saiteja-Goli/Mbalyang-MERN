@@ -11,6 +11,7 @@ import {
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import video1 from "../assets/video4.mp4";
+import './Login.css'
 
 const Login = () => {
   const [show, setShow] = React.useState(false);

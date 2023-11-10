@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import video1 from "../assets/video4.mp4";
 import { useState } from "react";
 
-
+import "./Signup.css"
 
 const SignUp = () => {
   const [show, setShow] = React.useState(false);
