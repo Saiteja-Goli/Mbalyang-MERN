@@ -1,6 +1,5 @@
 # Mbalyang-Full-Stack-Web-Application
 
-# PropFTX-Assignment
 
 # DeployedLink :
 
