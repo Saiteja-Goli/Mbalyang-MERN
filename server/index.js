@@ -22,6 +22,7 @@ const port = process.env.PORT;
 app.listen(port, async () => {
   try {
     await connection;
+    console.log("connected to DB")
     console.log(`Listining on server ${port}`);
   } catch (error) {
     console.log("error while connectiong DB");

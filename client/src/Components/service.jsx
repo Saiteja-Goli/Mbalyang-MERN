@@ -37,7 +37,7 @@ const Services = () => {
   // --------GET---------------------------------------------------------------------------------------------------------------------------
 
   const fetchData = async () => {
-    await fetch(`https://odd-erin-bat-boot.cyclic.app/hotel`, {
+    await fetch(`https://backend-n4i3cx12v-saiteja-goli.vercel.app/hotel`, {
       method: "GET",
       headers: {
         "Authorization": `Bearer ${token}`
@@ -65,7 +65,7 @@ const Services = () => {
   useEffect(() => {
     fetchData()
   }, [])
-  // ----------Sort-------------------------------------------------------------------------------------------------------------------------
+  // -------------------------Sort------------------------
   function handleSorting(e) {
     if (e === "lth") {
       const sortedData = [...Hotel].sort((a, b) => a.price_inr - b.price_inr);
@@ -101,7 +101,7 @@ const Services = () => {
       ...newHotelData
     };
 
-    fetch("https://odd-erin-bat-boot.cyclic.app/hotel/hotelpost", {
+    fetch("https://backend-n4i3cx12v-saiteja-goli.vercel.app/hotel/hotelpost", {
       method: "POST",
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -139,7 +139,7 @@ const Services = () => {
 
   const handleDelete = (id) => {
     console.log(id)
-    fetch(`https://odd-erin-bat-boot.cyclic.app/hotel/delete/${id}`, {
+    fetch(`https://backend-n4i3cx12v-saiteja-goli.vercel.app/hotel/delete/${id}`, {
       method: "DELETE",
       headers: {
         'Authorization': `Bearer ${token}`,

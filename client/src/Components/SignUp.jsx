@@ -41,7 +41,7 @@ const SignUp = () => {
       state.email.length != 0 &&
       state.password.length > 6
     ) {
-      fetch(`https://odd-erin-bat-boot.cyclic.app/user/signup`, {
+      fetch(`https://backend-n4i3cx12v-saiteja-goli.vercel.app/user/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

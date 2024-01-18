@@ -23,7 +23,7 @@ const Login = () => {
   };
   const handelSubmit = (e) => {
     e.preventDefault();
-    fetch(`https://odd-erin-bat-boot.cyclic.app/user/login`, {
+    fetch(`https://backend-n4i3cx12v-saiteja-goli.vercel.app/user/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
