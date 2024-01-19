@@ -7,6 +7,7 @@ import {
   Heading,
   Input,
   Button,
+  useToast,
   FormHelperText,
   FormErrorMessage,
 } from "@chakra-ui/react";
@@ -14,8 +15,6 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import video1 from "../assets/video4.mp4";
 import { useState } from "react";
-
-// import "./Signup.css"
 
 const SignUp = () => {
   const [show, setShow] = React.useState(false);
@@ -28,6 +27,7 @@ const SignUp = () => {
     email: "",
     password: "",
   });
+  const toast = useToast()
   const handleClick = () => setShow(!show);
   const handleChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
@@ -36,32 +36,54 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
-      state.name.length != 0 &&
-      state.username.length != 0 &&
-      state.email.length != 0 &&
+      state.name.length !== 0 &&
+      state.username.length !== 0 &&
+      state.email.length !== 0 &&
       state.password.length > 6
     ) {
-      fetch(`https://backend-n4i3cx12v-saiteja-goli.vercel.app/user/signup`, {
+      fetch(`https://mbalyang-backend-code.onrender.com/user/signup`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(state)
-      }).then(res => res.json()).then((data) => {
-        setState(data)
-        console.log(data)
-        alert("SignUp Successfull...Redirecting to Login Page")
-        navigate("/login");
+        body: JSON.stringify(state),
+      })
+        .then((res) => {
+          console.log("Response", res.status);
+          if (res.status === 400) {
+            toast({
+              title: 'User Exists',
+              description: "Email Already Exists, Please Login",
+              status: "info",
+              duration: 5000,
+              isClosable: true,
+            });
+          } else if (res.status === 200) {
+            setState(res);
+            toast({
+              title: 'Signup Successful',
+              description: "We've created your account for you.",
+              status: 'success',
+              duration: 5000,
+              isClosable: true,
+            });
 
-      }).catch(err => console.log(err))
-    }
-    else {
-      alert("All fields are compulsory");
+            navigate("/login");
+          } else {
+            // Handle other status codes if needed
+            console.log("Unexpected status code:", res.status);
+          }
+        })
+        .catch((err) => console.log(err));
     }
   };
 
-  return (
 
+  const handleHome = () => {
+    navigate("/login")
+  }
+
+  return (
     <div style={mainLogin}>
       <div style={overlayLogin}></div>
       <video style={videoLogin} className="videoLogin" src={video1} autoPlay muted loop />
@@ -128,18 +150,26 @@ const SignUp = () => {
               </InputRightElement>
             </InputGroup>
           </FormControl>
+          <Button style={{
+            marginBottom: "4px",
+            marginRight: "3px",
+            padding: "22px 20px",
+            backgroundColor: "rgb(253, 101, 54)",
+            borderRadius: "10px",
+            color: "white"
+          }} onClick={handleHome}>Login</Button>
+
           <input type="submit" value={"Signup"} className="signbtn" />
         </form>
       </div>
-    </div>
+    </div >
   );
-};
+}
 
 const mainLogin = {
   width: "100%",
   height: "100vh"
 }
-
 const overlayLogin = {
   width: "100%",
   height: "100%",
@@ -148,7 +178,6 @@ const overlayLogin = {
   left: "0",
   backgroundColor: "rgba(0, 0, 0, 0.2)",
 }
-
 const videoLogin = {
   width: '100%',
   height: '100%',
@@ -161,7 +190,6 @@ const formLogin = {
   borderRadius: '15px',
   backgroundColor: 'white',
 }
-
 const containerLogin = {
   position: "absolute",
   top: '0',
@@ -172,6 +200,7 @@ const containerLogin = {
   width: '100%',
   height: '100%',
 }
+
 export default SignUp
 
 

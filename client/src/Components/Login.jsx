@@ -7,6 +7,7 @@ import {
   InputRightElement,
   Heading,
   Input,
+  useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -21,9 +22,12 @@ const Login = () => {
   const handleChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
   };
+
+  const toast = useToast()
+
   const handelSubmit = (e) => {
     e.preventDefault();
-    fetch(`https://backend-n4i3cx12v-saiteja-goli.vercel.app/user/login`, {
+    fetch(`https://mbalyang-backend-code.onrender.com/user/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -35,17 +39,33 @@ const Login = () => {
         if (data.token) {
           console.log(data.token)
           localStorage.setItem("token", JSON.stringify(data.token))
-          alert("Login Successfull.Redirecting to HomePage")
+          toast({
+            title: 'Success',
+            description: "Login Successfull",
+            status: 'success',
+            duration: 5000,
+            isClosable: true,
+          })
+
           navigate("/")
         } else {
-          alert("Please Enter Correct Credentials")
+          toast({
+            title: 'Incorrect Credentials',
+            description: "Please Enter Correct Credentials",
+            status: "error",
+            duration: 5000,
+            isClosable: true,
+          });
           return
         }
       }).catch(err => console.log(err))
   }
+  const handleHome = () => {
+    navigate("/")
+  }
+
   return (
     <div className="mainLogin">
-
       <div className="overlayLogin"></div>
       <video className="videoLogin" src={video1} autoPlay muted loop />
       <div className="containerLogin">
@@ -80,6 +100,14 @@ const Login = () => {
               </InputRightElement>
             </InputGroup>
           </FormControl>
+          <Button style={{
+            marginBottom: "4px",
+            marginRight: "3px",
+            padding: "22px 20px",
+            backgroundColor: "rgb(253, 101, 54)",
+            borderRadius: "10px",
+            color: "white"
+          }} onClick={handleHome}>Home</Button>
           <input type="submit" value={"Login"} className="signbtn" />
         </form>
       </div>

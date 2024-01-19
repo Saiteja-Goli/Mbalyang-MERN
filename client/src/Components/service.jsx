@@ -16,7 +16,8 @@ import { useEffect, useState } from 'react';
 import Navbar from "./Navbar";
 import Footer from './Footer';
 import { Link } from 'react-router-dom';
-// -----------------------------------------------------------------------------------------------------------------------------------
+
+
 const Services = () => {
   const [Hotel, setHotel] = useState([])
   const [Ele, setEle] = useState([])
@@ -31,13 +32,13 @@ const Services = () => {
     facilities: [],
     overview: ""
   });
+
   const toast = useToast()
   // -----------------------------------------------------------------------------------------------------------------------------------
   let token = JSON.parse(localStorage.getItem("token"))
-  // --------GET---------------------------------------------------------------------------------------------------------------------------
-
+  // Fetching Hotels
   const fetchData = async () => {
-    await fetch(`https://backend-n4i3cx12v-saiteja-goli.vercel.app/hotel`, {
+    await fetch(`https://mbalyang-backend-code.onrender.com/hotel`, {
       method: "GET",
       headers: {
         "Authorization": `Bearer ${token}`
@@ -65,7 +66,9 @@ const Services = () => {
   useEffect(() => {
     fetchData()
   }, [])
-  // -------------------------Sort------------------------
+
+
+  // Sorting by Price
   function handleSorting(e) {
     if (e === "lth") {
       const sortedData = [...Hotel].sort((a, b) => a.price_inr - b.price_inr);
@@ -77,7 +80,7 @@ const Services = () => {
       setEle(Hotel);
     }
   }
-  // -----------------------------------------------------------------------------------------------------------------------------------
+
 
   function handleInputChange(event) {
     if (event.target.name === "facilities") {
@@ -93,15 +96,14 @@ const Services = () => {
       });
     }
   }
-  // ----------POST-------------------------------------------------------------------------------------------------------------------------
-
+  // Adding Hotel
   function handleSubmit(event) {
     event.preventDefault();
     const newHotel = {
       ...newHotelData
     };
 
-    fetch("https://backend-n4i3cx12v-saiteja-goli.vercel.app/hotel/hotelpost", {
+    fetch("https://mbalyang-backend-code.onrender.com/hotel/hotelpost", {
       method: "POST",
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -135,11 +137,10 @@ const Services = () => {
         console.error(error);
       });
   }
-  // ----------DELETE-------------------------------------------------------------------------------------------------------------------------
-
+  // Deleting Hotel
   const handleDelete = (id) => {
     console.log(id)
-    fetch(`https://backend-n4i3cx12v-saiteja-goli.vercel.app/hotel/delete/${id}`, {
+    fetch(`https://mbalyang-backend-code.onrender.com/hotel/delete/${id}`, {
       method: "DELETE",
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -293,7 +294,8 @@ const Services = () => {
             })
           )
             : isActive === true ? (
-              <Spinner margin={"20%"} alignSelf={"center"} />
+              <Spinner
+                ml={"663"} alignSelf={"center"} />
             ) : (
               <Heading margin={"20%"} alignSelf={"center"}>
                 Not found
