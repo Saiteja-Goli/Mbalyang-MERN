@@ -7,25 +7,29 @@ const { userModel } = require("../models/userModel");
 const userController = Router();
 
 //SignUp
+// SignUp
 userController.post("/signup", async (req, res) => {
   try {
     const { name, username, email, password } = req.body;
-    const email_1 = await userModel.findOne({ email });
+    const emailExists = await userModel.findOne({ email });
 
-    if (email_1) return res.json({ Message: "User Already Exists"});
+    if (emailExists) {
+      return res.status(400).json({ Message: "User Already Exists" });
+    }
 
-    const hashed_password = bcrypt.hashSync(password, 8);
+    const hashedPassword = bcrypt.hashSync(password, 8);
     const user = new userModel({
       name,
       username,
       email,
-      password: hashed_password,
+      password: hashedPassword,
     });
+
     await user.save();
-    res.status(200).json({ Message: "SignUp Successfull" });
+    res.status(200).json({ Message: "SignUp Successful" });
   } catch (err) {
-    res.json({ Message: "Signup failure" });
-    console.log(err);
+    console.error(err);
+    res.status(500).json({ Message: "Signup failure" });
   }
 });
 
