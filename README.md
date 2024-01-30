@@ -2,7 +2,7 @@
 
 
 # DeployedLink :
-- [Link](https://mbalyang-mern-r4c42l2m3-saiteja-goli.vercel.app/)
+- [Link](https://frontend-mq7zyzhyk-saiteja-goli.vercel.app/)
 
 # Description
 A React application for managing a collection of Hotels with CRUD operations.
